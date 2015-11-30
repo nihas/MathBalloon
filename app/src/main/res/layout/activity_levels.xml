@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:id="@+id/linear1"
         android:layout_width="match_parent"
@@ -9,8 +10,8 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:padding="30dp">
-    <LinearLayout
-        android:id="@+id/linear11"
+    <RelativeLayout
+        android:id="@+id/relative11"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -18,19 +19,32 @@
         android:padding="3dp"
 
         >
-        <Button
+
+        <ImageView
             android:id="@+id/balloon11"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/rounded_fill_indicator"
+            android:src="@drawable/baloon"
+           />
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="1"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#ffffff"
-            android:textStyle="bold"/>
+            android:layout_marginBottom="20dp"
+            android:textColor="@android:color/white"/>
+       </RelativeLayout>
+
+
         <requestFocus />
-        </LinearLayout>
-    <LinearLayout
-        android:id="@+id/linear12"
+        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relative12"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -38,19 +52,28 @@
         android:padding="3dp"
 
         >
-        <Button
+        <ImageView
             android:id="@+id/balloon12"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/rounded_fill_indicator"
-            android:text="2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#ffffff"
-            android:textStyle="bold"/>
-    </LinearLayout>
-<LinearLayout
-android:id="@+id/linear13"
+           android:src="@drawable/baloon"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_marginBottom="20dp"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+    </RelativeLayout>
+<RelativeLayout
+android:id="@+id/relative13"
 android:layout_width="0dp"
 android:layout_height="match_parent"
 android:layout_weight="1"
@@ -58,17 +81,26 @@ android:orientation="horizontal"
     android:padding="3dp"
 
     >
-        <Button
+        <ImageView
             android:id="@+id/balloon13"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:background="@drawable/rounded_fill_indicator"
+           android:src="@drawable/baloon"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="3"
+            android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#ffffff"
-            android:textStyle="bold"/>
-</LinearLayout>
+            android:layout_marginBottom="20dp"
+            android:textColor="@android:color/white"/>
+    </RelativeLayout>
+</RelativeLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linear2"
@@ -77,8 +109,8 @@ android:orientation="horizontal"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:padding="30dp">
-        <LinearLayout
-            android:id="@+id/linear21"
+        <RelativeLayout
+            android:id="@+id/relative21"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -86,18 +118,27 @@ android:orientation="horizontal"
             android:padding="3dp"
 
             >
-            <Button
+            <ImageView
                 android:id="@+id/balloon21"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/rounded_fill_indicator"
-                android:text="4"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#ffffff"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linear22"
+              android:src="@drawable/baloon"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@android:color/white"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relative22"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -105,36 +146,54 @@ android:orientation="horizontal"
             android:padding="3dp"
 
             >
-            <Button
+            <ImageView
                 android:id="@+id/balloon22"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/rounded_fill_indicator"
-                android:text="5"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#ffffff"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linear23"
+               android:src="@drawable/baloon"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@android:color/white"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relative23"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:padding="3dp"
             >
-            <Button
+            <ImageView
                 android:id="@+id/balloon23"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/rounded_fill_indicator"
-                android:text="6"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#ffffff"
-                android:textStyle="bold"/>
-        </LinearLayout>
+                android:src="@drawable/baloon"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@android:color/white"/>
+            </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linear3"
@@ -143,65 +202,102 @@ android:orientation="horizontal"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:padding="30dp">
-        <LinearLayout
-            android:id="@+id/linear31"
+        <RelativeLayout
+            android:id="@+id/relative31"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:padding="3dp"
             >
-            <Button
+            <ImageView
                 android:id="@+id/balloon31"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/rounded_fill_indicator"
-                android:text="7"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
+               android:src="@drawable/baloon"
                 />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linear32"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@android:color/white"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relative32"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:padding="3dp"
             >
-            <Button
+            <ImageView
                 android:id="@+id/balloon32"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/rounded_fill_indicator"
-                android:text="8"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
+                android:src="@drawable/baloon"
                />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/linear33"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@android:color/white"/>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relative33"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal"
             android:padding="3dp"
             >
-            <Button
+            <ImageView
                 android:id="@+id/balloon33"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/rounded_fill_indicator"
-                android:text="9"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#ffffff"
-                android:textStyle="bold"
+                android:tint="@color/colorPrimary"
+                android:src="@drawable/baloon"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9"
+                    android:textStyle="bold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@android:color/white"/>
+            </RelativeLayout>
                />
-        </LinearLayout>
+        </RelativeLayout>
+
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pick your balloon"
+        android:layout_gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
 </LinearLayout>

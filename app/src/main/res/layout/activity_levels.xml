@@ -24,21 +24,9 @@
             android:id="@+id/balloon11"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/baloon"
+            android:src="@drawable/balloon1"
            />
-       <RelativeLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_centerInParent="true">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_marginBottom="20dp"
-            android:textColor="@android:color/white"/>
-       </RelativeLayout>
+
 
 
         <requestFocus />
@@ -57,20 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-           android:src="@drawable/baloon"/>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:layout_marginBottom="20dp"
-                android:textColor="@android:color/white"/>
-        </RelativeLayout>
+           android:src="@drawable/balloon2"/>
+
     </RelativeLayout>
 <RelativeLayout
 android:id="@+id/relative13"
@@ -86,20 +62,8 @@ android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-           android:src="@drawable/baloon"/>
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"
-            android:textStyle="bold"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:layout_marginBottom="20dp"
-            android:textColor="@android:color/white"/>
-    </RelativeLayout>
+           android:src="@drawable/balloon3"/>
+
 </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -122,20 +86,8 @@ android:orientation="horizontal"
                 android:id="@+id/balloon21"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-              android:src="@drawable/baloon"/>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="@android:color/white"/>
-            </RelativeLayout>
+              android:src="@drawable/balloon4"/>
+
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/relative22"
@@ -151,20 +103,8 @@ android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-               android:src="@drawable/baloon"/>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="@android:color/white"/>
-            </RelativeLayout>
+               android:src="@drawable/balloon5"/>
+
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/relative23"
@@ -179,20 +119,8 @@ android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/baloon"/>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="6"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="@android:color/white"/>
-            </RelativeLayout>
+                android:src="@drawable/balloon6"/>
+
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -215,21 +143,9 @@ android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-               android:src="@drawable/baloon"
+               android:src="@drawable/balloon7"
                 />
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="7"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="@android:color/white"/>
-            </RelativeLayout>
+
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/relative32"
@@ -244,21 +160,9 @@ android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:src="@drawable/baloon"
+                android:src="@drawable/balloon8"
                />
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="8"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_marginBottom="20dp"
-                    android:textColor="@android:color/white"/>
-            </RelativeLayout>
+
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/relative33"
@@ -274,7 +178,7 @@ android:orientation="horizontal"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:tint="@color/colorPrimary"
-                android:src="@drawable/baloon"/>
+                android:src="@drawable/balloon9"/>
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

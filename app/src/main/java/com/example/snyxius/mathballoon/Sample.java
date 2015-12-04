@@ -2,6 +2,8 @@ package com.example.snyxius.mathballoon;
 
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -16,6 +18,8 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -41,12 +45,15 @@ public class Sample extends Activity {
 
     };
     private Rect mDisplaySize = new Rect();
-
+     int mInt;
     private RelativeLayout mRootLayout;
     private ArrayList<View> mAllImageViews = new ArrayList<View>();
-
+    RelativeLayout relativeLayout;
     private float mScale;
+    ImageView imageView,pausebutton;
+    ImageView resume,level,score,exit;
 
+    TextView animtext;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,28 +65,62 @@ public class Sample extends Activity {
         DisplayMetrics metrics = new DisplayMetrics();
         display.getMetrics(metrics);
         mScale = metrics.density;
-
         mRootLayout = (RelativeLayout) findViewById(R.id.main_layout);
+        pausebutton=(ImageView)findViewById(R.id.pause);
 
-        new Timer().schedule(new ExeTimerTask(), 0, 3000);
+        Bundle b = getIntent().getExtras();
+       mInt= b.getInt("Integer");
+        System.out.println("Value" + mInt);
+       /* pausebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Dialog dialog = new Dialog(Sample.this);
+                dialog.setContentView(R.layout.menudialog);
+                resume = (ImageView) dialog.findViewById(R.id.resume);
+                level = (ImageView) dialog.findViewById(R.id.level);
+                score = (ImageView) dialog.findViewById(R.id.score);
+                exit = (ImageView) dialog.findViewById(R.id.exit);
+
+
+                resume.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+                    }
+                });
+                exit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent startMain = new Intent(Intent.ACTION_MAIN);
+                        startMain.addCategory(Intent.CATEGORY_HOME);
+                        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        startActivity(startMain);
+                    }
+                });
+                dialog.show();
+
+            }
+        });*/
+        new Timer().schedule(new ExeTimerTask(), 0, 1000);
     }
 
-    public void startAnimation(final ImageView aniView) {
+    public void startAnimation(final RelativeLayout aniView) {
 
         aniView.setPivotX(aniView.getWidth() / 2);
         aniView.setPivotY(aniView.getHeight() / 2);
 
-        long delay = new Random().nextInt(Constants.MAX_DELAY);
+       // long delay = new Random().nextInt(Constants.MAX_DELAY);
 
-        final ValueAnimator animator = ValueAnimator.ofFloat(1, 0.0f);
+        //speed for ballon increasing here
+        final ValueAnimator animator = ValueAnimator.ofFloat(1.1f, 0.0f);
         animator.setDuration(Constants.ANIM_DURATION);
         animator.setInterpolator(new AccelerateInterpolator());
-        animator.setStartDelay(delay);
-        final int movex = new Random().nextInt(mDisplaySize.centerX());
-//        int leftpnt=movex-280;
-//        int rightpnt=movex;
-//        int[] values={leftpnt,rightpnt};
-//        result=getRandom(values);
+        animator.setStartDelay(2000);
+        final int movex = new Random().nextInt(mDisplaySize.right);
+//
 
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
@@ -90,7 +131,7 @@ public class Sample extends Activity {
             public void onAnimationUpdate(ValueAnimator animation) {
                 float value = ((Float) (animation.getAnimatedValue())).floatValue();
 
-                aniView.setTranslationX((movex-200)*value);
+                aniView.setTranslationX((movex-150)*value);
                 aniView.setTranslationY((mDisplaySize.bottom + (150*mScale))*value);
             }
         });
@@ -98,10 +139,13 @@ public class Sample extends Activity {
         animator.start();
     }
 
-    public static int getRandom(int[] array)
+    public static int getRandom(int startvalue,int endvalue)
     {
-        int rnt=new Random().nextInt(array.length);
-        return array[rnt];
+//        int leftpnt=movex-280;
+//        int rightpnt=movex;
+        Random r=new Random();
+        int values=r.nextInt(endvalue-startvalue)+startvalue;
+return values;
     }
 
     private Handler mHandler = new Handler() {
@@ -111,20 +155,54 @@ public class Sample extends Activity {
             int viewId = new Random().nextInt(LEAVES.length);
             Drawable d = getResources().getDrawable(LEAVES[viewId]);
             LayoutInflater inflate = LayoutInflater.from(Sample.this);
-            ImageView imageView = (ImageView) inflate.inflate(R.layout.ani_image_view, null);
+//            ImageView imageView = (ImageView) inflate.inflate(R.layout.ani_image_view, null);
+//            imageView.setImageDrawable(d);
+//            mRootLayout.addView(imageView);
+
+//            mAllImageViews.add(imageView);
+View child = getLayoutInflater().inflate(R.layout.duplicate, null);
+            relativeLayout = (RelativeLayout)child.findViewById(R.id.relative1);
+            imageView=(ImageView)child.findViewById(R.id.aniImageView);
+            animtext=(TextView)child.findViewById(R.id.numbertext);
+
             imageView.setImageDrawable(d);
-            mRootLayout.addView(imageView);
-
-            mAllImageViews.add(imageView);
-
+            animtext.setText(String.valueOf(getRandom(2, 100)));
+            relativeLayout.setTag(animtext.getText().toString());
 
 
-            RelativeLayout.LayoutParams animationLayout = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    RelativeLayout tvday=(RelativeLayout)findViewById(v.getId());
+//                    TextView t=(TextView)tvday.findViewById(R.id.numbertext);
+                    int num = Integer.valueOf(v.getTag().toString());
+                    System.out.println("num" + num);
+                    if(num%mInt==0) {
+                        Toast.makeText(getApplication(), "correct" , Toast.LENGTH_LONG).show();
+
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplication(),"wrong", Toast.LENGTH_LONG).show();
+                    }
+
+
+
+                }
+            });
+
+//            RelativeLayout relativeLayout=(RelativeLayout)inflate.inflate(R.layout.duplicate,null);
+//            relativeLayout.setBackgroundResource();
+//            relativeLayout.setBackgroundResource(d);
+            mRootLayout.addView(relativeLayout);
+
+
+            RelativeLayout.LayoutParams animationLayout = (RelativeLayout.LayoutParams) relativeLayout.getLayoutParams();
             animationLayout.setMargins(0, (int)(-200*mScale), 0, 0);
             animationLayout.width = (int) (200*mScale);
             animationLayout.height = (int) (200*mScale);
 
-            startAnimation(imageView);
+            startAnimation(relativeLayout);
         }
     };
 

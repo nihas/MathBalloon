@@ -63,12 +63,7 @@ public class SelectnumberActivity extends AppCompatActivity {
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                int IntValue=1;
-                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
-//                Bundle b=new Bundle();
-//                b.putInt("Integer", IntValue);
-//                intent.putExtras(b);
-                startActivity(intent);
+                setValue(1);
 
 
             }
@@ -76,93 +71,60 @@ public class SelectnumberActivity extends AppCompatActivity {
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int IntValue=2;
-                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
-//                Bundle b=new Bundle();
-//                b.putInt("Integer", IntValue);
-//                intent.putExtras(b);
-                startActivity(intent);
+setValue(2);
             }
         });
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int IntValue=3;
-                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
-//                Bundle b=new Bundle();
-//                b.putInt("Integer", IntValue);
-//                intent.putExtras(b);
-                startActivity(intent);
-
+              setValue(3);
             }
         });
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int IntValue=4;
-                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
-//                Bundle b=new Bundle();
-//                b.putInt("Integer", IntValue);
-//                intent.putExtras(b);
-                startActivity(intent);
+               setValue(4);
 
             }
         });
         five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int IntValue=5;
-                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
-//                Bundle b=new Bundle();
-//                b.putInt("Integer", IntValue);
-//                intent.putExtras(b);
-                startActivity(intent);
+                setValue(5);
             }
         });
         six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int IntValue=6;
-                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
-//                Bundle b=new Bundle();
-//                b.putInt("Integer", IntValue);
-//                intent.putExtras(b);
-                startActivity(intent);
+              setValue(6);
             }
         });
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int IntValue=7;
-                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
-//                Bundle b=new Bundle();
-//                b.putInt("Integer", IntValue);
-//                intent.putExtras(b);
-                startActivity(intent);
+              setValue(7);
             }
         });
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int IntValue=8;
-                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
-//                Bundle b=new Bundle();
-//                b.putInt("Integer", IntValue);
-//                intent.putExtras(b);
-                startActivity(intent);
-
+setValue(8);
             }
         });
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int IntValue=9;
-                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
-//                Bundle b=new Bundle();
-//                b.putInt("Integer", IntValue);
-//                intent.putExtras(b);
-                startActivity(intent);
+                setValue(9);
             }
         });
+    }
+    public  void setValue(int Intvalue)
+    {
+//        int IntValue=9;
+        Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
+        Bundle b=new Bundle();
+        b.putInt("Integer", Intvalue);
+        intent.putExtras(b);
+        startActivity(intent);
     }
 }

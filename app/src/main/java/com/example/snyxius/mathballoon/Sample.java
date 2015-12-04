@@ -28,15 +28,15 @@ public class Sample extends Activity {
 
 
     private int[] LEAVES = {
-            R.drawable.balloon1,
-            R.drawable.balloon2,
-            R.drawable.balloon3,
-            R.drawable.balloon4,
-            R.drawable.balloon5,
-            R.drawable.balloon6,
-            R.drawable.balloon7,
-            R.drawable.balloon8,
-            R.drawable.balloon9,
+            R.drawable.blankballon1,
+            R.drawable.blankballon2,
+            R.drawable.blankballon3,
+            R.drawable.blankballon4,
+            R.drawable.blankballon5,
+            R.drawable.blankballon6,
+            R.drawable.blankballon7,
+            R.drawable.blankballon8,
+            R.drawable.blankballon9,
 
     };
     private Rect mDisplaySize = new Rect();

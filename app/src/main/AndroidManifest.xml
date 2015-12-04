@@ -15,11 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".LevelActivity"/>
-        <activity android:name=".Menupage"/>
-        <activity android:name=".Moving"/>
         <activity android:name=".Rising"/>
+        <activity android:name=".SelectnumberActivity"/>
+        <activity android:name=".Menupage"/>
+        <activity android:name=".Sample"/>
     </application>
 
 </manifest>

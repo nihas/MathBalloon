@@ -3,6 +3,11 @@ package com.example.snyxius.mathballoon;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.Dialog;
+import android.content.Intent;
+//import android.graphics.drawable.AnimationDrawable;
+import android.content.res.Resources;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,36 +28,124 @@ import java.util.Random;
 /**
  * Created by snyxius on 26/11/15.
  */
-public class Rising extends AppCompatActivity implements Runnable {
+public class Rising extends AppCompatActivity {
     int i1;
     Random r;
-    RelativeLayout one, relativeLayouttop, two, three,four;
+    RelativeLayout one, relativeLayouttop, two, four;
     AnimationSet animSetAnimationButton,animSetAnimationButton2,animSetAnimationButton3,animSetAnimationButton4;
     TranslateAnimation translateAnimAnimationButton;
-    TextView textone,texttwo,textthree,textfour;
-    ImageView pause;
+    TextView textone,texttwo,textfour;
+    ImageView pause,balloon1,balloon2,balloon3,balloon4,blast1;
+     ImageView resume,score,level,exit;
+    AnimationDrawable animationexplosion;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rising);
+
         one = (RelativeLayout) findViewById(R.id.relative2);
         two = (RelativeLayout) findViewById(R.id.relative3);
-        three = (RelativeLayout) findViewById(R.id.relative4);
+//        three = (RelativeLayout) findViewById(R.id.relative4);
         four=(RelativeLayout)findViewById(R.id.relative5);
         textone=(TextView)findViewById(R.id.noleft);
         texttwo=(TextView)findViewById(R.id.nocenter);
-        textthree=(TextView)findViewById(R.id.noright);
+//        textthree=(TextView)findViewById(R.id.noright);
         textfour=(TextView)findViewById(R.id.noright1);
         pause=(ImageView)findViewById(R.id.pause);
+        balloon1=(ImageView)findViewById(R.id.balloon1);
+        balloon2=(ImageView)findViewById(R.id.balloon2);
+//        balloon3=(ImageView)findViewById(R.id.balloon3);
+        balloon4=(ImageView)findViewById(R.id.balloon4);
+        blast1=(ImageView)findViewById(R.id.blast1);
+
+        Bundle b = getIntent().getExtras();
+        final int mInt= b.getInt("Integer");
+        System.out.println("Value" + mInt);
+
+
+            one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textone.getText();
+                System.out.println("txt" +textone.getText());
+
+                int num = Integer.valueOf(textone.getText().toString());
+//                setNumber(num); //saving the myNum variable
+           System.out.println("num"+num);
+                if(num%mInt==0) {
+                    balloon1.setVisibility(View.INVISIBLE);
+                    textone.setVisibility(View.INVISIBLE);
+                }
+                else
+                {
+                    balloon1.setVisibility(View.VISIBLE);
+                }
+
+
+            }
+        });
+        two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                texttwo.getText();
+                System.out.println(texttwo.getText());
+
+            }
+        });
+//        three.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                textthree.getText();
+//                System.out.println(textthree.getText());
+//            }
+//        });
+        four.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textfour.getText();
+                System.out.println(textfour.getText());
+
+            }
+        });
+
+
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 final Dialog dialog = new Dialog(Rising.this);
                 dialog.setContentView(R.layout.menudialog);
+                resume=(ImageView)dialog.findViewById(R.id.resume);
+                level=(ImageView)dialog.findViewById(R.id.level);
+                score=(ImageView)dialog.findViewById(R.id.score);
+                exit=(ImageView)dialog.findViewById(R.id.exit);
+                animSetAnimationButton2.reset();
+                animSetAnimationButton.reset();
+                animSetAnimationButton3.reset();
+                animSetAnimationButton4.reset();
 
+                //getting number from selectnumberclass
+
+
+
+                resume.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        dialog.dismiss();
+                    }
+                });
+exit.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        startActivity(startMain);    }
+});
                 dialog.show();
 
             }
@@ -65,16 +158,17 @@ public class Rising extends AppCompatActivity implements Runnable {
 //          i1 = r.nextInt(80 - 65) + 65;
         for(int i =0; i<=100; i++){
             i1 = r.nextInt(100);
-            System.out.println("pseudo random int in a range : " + i1);
             textone.setText(String.valueOf(i1));
             texttwo.setText(String.valueOf(i1));
-            textthree.setText(String.valueOf(i1));
+//            textthree.setText(String.valueOf(i1));
 
         }
 
 
 
-//
+//Animation for balloons
+
+
         final ObjectAnimator objectAnimatorButton
                 = ObjectAnimator.ofFloat(one, "translationY", 0f, -getRelativeTop(relativeLayouttop));
         objectAnimatorButton.setDuration(5000);
@@ -88,6 +182,8 @@ public class Rising extends AppCompatActivity implements Runnable {
 
         animSetAnimationButton.addAnimation(translateAnimAnimationButton);
         animSetAnimationButton.setDuration(5000);
+        animSetAnimationButton.setStartOffset(200);
+
         animSetAnimationButton.setFillAfter(true);
 
 //animation for balloon 2
@@ -99,7 +195,7 @@ public class Rising extends AppCompatActivity implements Runnable {
                 Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
                 0.0f, Animation.RELATIVE_TO_SELF, -1);
 
-        animation2.setDuration(8000);
+        animation2.setDuration(18000);
         animation2.setStartOffset(200);
         animSetAnimationButton2.addAnimation(animation2);
 
@@ -111,7 +207,7 @@ public class Rising extends AppCompatActivity implements Runnable {
                 Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
                 0.0f, Animation.RELATIVE_TO_SELF, -1);
 
-        animation3.setDuration(13000);
+        animation3.setDuration(18000);
         animation3.setStartOffset(200);
         animSetAnimationButton3.addAnimation(animation3);
 
@@ -123,7 +219,7 @@ public class Rising extends AppCompatActivity implements Runnable {
                 Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
                 0.0f, Animation.RELATIVE_TO_SELF, -1);
 
-        animation4.setDuration(10000);
+        animation4.setDuration(18000);
         animation4.setStartOffset(200);
         animSetAnimationButton4.addAnimation(animation4);
 
@@ -138,9 +234,9 @@ public class Rising extends AppCompatActivity implements Runnable {
             public void onAnimationEnd(Animation animation) {
                 one.startAnimation(animSetAnimationButton);
 
+
                 for (int i = 0; i <= 100; i++) {
                     i1 = r.nextInt(100);
-                    System.out.println("pseudo random int in a range : " + i1);
                     textone.setText(String.valueOf(i1));
 //             texttwo.setText(String.valueOf(i1));
 //             textthree.setText(String.valueOf(i1));
@@ -174,7 +270,6 @@ public class Rising extends AppCompatActivity implements Runnable {
                 two.startAnimation(animSetAnimationButton2);
                 for (int i = 0; i <= 100; i++) {
                     i1 = r.nextInt(100);
-                    System.out.println("pseudo random int in a range : " + i1);
                     texttwo.setText(String.valueOf(i1));
 //             texttwo.setText(String.valueOf(i1));
 //             textthree.setText(String.valueOf(i1));
@@ -201,13 +296,12 @@ public class Rising extends AppCompatActivity implements Runnable {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                three.startAnimation(animSetAnimationButton3);
+//                three.startAnimation(animSetAnimationButton3);
 
                 for (int i = 0; i <= 100; i++) {
                     i1 = r.nextInt(100);
-                    System.out.println("pseudo random int in a range : " + i1);
 //                    textone.setText(String.valueOf(i1));
-                    textthree.setText(String.valueOf(i1));
+//                    textthree.setText(String.valueOf(i1));
 //                    textthree.setText(String.valueOf(i1));
 
                 }
@@ -217,11 +311,11 @@ public class Rising extends AppCompatActivity implements Runnable {
 
             @Override
             public void onAnimationRepeat(Animation animation) {
-                three.setAnimation(animSetAnimationButton3);
+//                three.setAnimation(animSetAnimationButton3);
 
             }
         });
-        three.setAnimation(animSetAnimationButton3);
+//        three.setAnimation(animSetAnimationButton3);
 
         //function for animating balloon 4
 
@@ -238,7 +332,6 @@ public class Rising extends AppCompatActivity implements Runnable {
 
                 for (int i = 0; i <= 100; i++) {
                     i1 = r.nextInt(100);
-                    System.out.println("pseudo random int in a range : " + i1);
 //                    textone.setText(String.valueOf(i1));
 //                    texttwo.setText(String.valueOf(i1));
                     textfour.setText(String.valueOf(i1));
@@ -265,15 +358,13 @@ public class Rising extends AppCompatActivity implements Runnable {
         else
             return myView.getTop() + getRelativeTop((View) myView.getParent());
     }
-
-
-    @Override
-    public void run() {
-
-
-
-
-
-
+    private int number;
+    void setNumber(int number){
+        this.number=number;
     }
-}
+
+    int getNumber(){
+        return number;
+    }
+
+   }

@@ -19,7 +19,7 @@ public class Menupage extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Menupage.this,LevelActivity.class);
+                Intent intent=new Intent(Menupage.this,SelectnumberActivity.class);
                 startActivity(intent);
             }
         });

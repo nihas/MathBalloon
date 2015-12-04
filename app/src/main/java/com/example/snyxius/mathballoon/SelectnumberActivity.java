@@ -6,14 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 /**
  * Created by Snyxius on 11/16/2015.
  */
-public class LevelActivity extends AppCompatActivity {
+public class SelectnumberActivity extends AppCompatActivity {
     ImageView one,two,three,four,five,six,seven,eight,nine;
     Animation shake;
     RelativeLayout relative1,relative2,relative3,relative4,relative5,relative6,relative7,relative8,relative9;
@@ -21,7 +20,7 @@ public class LevelActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_levels);
+        setContentView(R.layout.selectnumbers);
         shake = AnimationUtils.loadAnimation(this, R.anim.shakeanim);
         shake.setDuration(1000);
 
@@ -64,80 +63,105 @@ public class LevelActivity extends AppCompatActivity {
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LevelActivity.this, Rising.class);
+//                int IntValue=1;
+                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
+//                Bundle b=new Bundle();
+//                b.putInt("Integer", IntValue);
+//                intent.putExtras(b);
                 startActivity(intent);
+
 
             }
         });
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LevelActivity.this, Rising.class);
+                int IntValue=2;
+                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
+//                Bundle b=new Bundle();
+//                b.putInt("Integer", IntValue);
+//                intent.putExtras(b);
                 startActivity(intent);
-
             }
         });
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LevelActivity.this, Rising.class);
+                int IntValue=3;
+                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
+//                Bundle b=new Bundle();
+//                b.putInt("Integer", IntValue);
+//                intent.putExtras(b);
                 startActivity(intent);
-//                findViewById(R.id.balloon11).startAnimation(shake);
 
             }
         });
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LevelActivity.this, Rising.class);
+                int IntValue=4;
+                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
+//                Bundle b=new Bundle();
+//                b.putInt("Integer", IntValue);
+//                intent.putExtras(b);
                 startActivity(intent);
-//                findViewById(R.id.balloon11).startAnimation(shake);
 
             }
         });
         five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LevelActivity.this, Rising.class);
+                int IntValue=5;
+                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
+//                Bundle b=new Bundle();
+//                b.putInt("Integer", IntValue);
+//                intent.putExtras(b);
                 startActivity(intent);
-//                findViewById(R.id.balloon11).startAnimation(shake);
-
             }
         });
         six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LevelActivity.this, Rising.class);
+                int IntValue=6;
+                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
+//                Bundle b=new Bundle();
+//                b.putInt("Integer", IntValue);
+//                intent.putExtras(b);
                 startActivity(intent);
-//                findViewById(R.id.balloon11).startAnimation(shake);
-
             }
         });
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LevelActivity.this, Rising.class);
+                int IntValue=7;
+                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
+//                Bundle b=new Bundle();
+//                b.putInt("Integer", IntValue);
+//                intent.putExtras(b);
                 startActivity(intent);
-//                findViewById(R.id.balloon11).startAnimation(shake);
-
             }
         });
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LevelActivity.this, Rising.class);
+                int IntValue=8;
+                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
+//                Bundle b=new Bundle();
+//                b.putInt("Integer", IntValue);
+//                intent.putExtras(b);
                 startActivity(intent);
-//                findViewById(R.id.balloon11).startAnimation(shake);
 
             }
         });
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LevelActivity.this, Rising.class);
+                int IntValue=9;
+                Intent intent = new Intent(SelectnumberActivity.this, Sample.class);
+//                Bundle b=new Bundle();
+//                b.putInt("Integer", IntValue);
+//                intent.putExtras(b);
                 startActivity(intent);
-//                findViewById(R.id.balloon11).startAnimation(shake);
-
             }
         });
     }

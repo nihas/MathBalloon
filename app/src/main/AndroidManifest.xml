@@ -8,17 +8,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".SplashActivity" >
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Rising"/>
-        <activity android:name=".SelectnumberActivity"/>
-        <activity android:name=".Menupage"/>
-        <activity android:name=".Sample"/>
+        <activity android:name=".Rising"
+            android:screenOrientation="portrait"/>
+        />
+        <activity android:name=".Menupage"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".SelectnumberActivity"
+            android:screenOrientation="portrait"/>
+
+
+        <activity android:name=".Sample"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +26,7 @@ import java.util.TimerTask;
  * Created by snyxius on 3/12/15.
  */
 public class Sample extends Activity {
-
+    int result;
 
     private int[] LEAVES = {
             R.drawable.blankballon1,
@@ -60,13 +61,13 @@ public class Sample extends Activity {
 
         mRootLayout = (RelativeLayout) findViewById(R.id.main_layout);
 
-        new Timer().schedule(new ExeTimerTask(), 0, 5000);
+        new Timer().schedule(new ExeTimerTask(), 0, 3000);
     }
 
     public void startAnimation(final ImageView aniView) {
 
-        aniView.setPivotX(aniView.getWidth()/2);
-        aniView.setPivotY(aniView.getHeight()/2);
+        aniView.setPivotX(aniView.getWidth() / 2);
+        aniView.setPivotY(aniView.getHeight() / 2);
 
         long delay = new Random().nextInt(Constants.MAX_DELAY);
 
@@ -74,23 +75,33 @@ public class Sample extends Activity {
         animator.setDuration(Constants.ANIM_DURATION);
         animator.setInterpolator(new AccelerateInterpolator());
         animator.setStartDelay(delay);
+        final int movex = new Random().nextInt(mDisplaySize.centerX());
+//        int leftpnt=movex-280;
+//        int rightpnt=movex;
+//        int[] values={leftpnt,rightpnt};
+//        result=getRandom(values);
 
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 
 //            int angle = 90 + (int)(Math.random() * 101);
-//            int movex = new Random().nextInt(mDisplaySize.top);
+
 
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float value = ((Float) (animation.getAnimatedValue())).floatValue();
 
-//                aniView.setRotation(angle*value);
-//                aniView.setTranslationX((movex-40)*value);
-                aniView.setTranslationY((mDisplaySize.bottom + (250*mScale))*value);
+                aniView.setTranslationX((movex-200)*value);
+                aniView.setTranslationY((mDisplaySize.bottom + (150*mScale))*value);
             }
         });
 
         animator.start();
+    }
+
+    public static int getRandom(int[] array)
+    {
+        int rnt=new Random().nextInt(array.length);
+        return array[rnt];
     }
 
     private Handler mHandler = new Handler() {
@@ -105,6 +116,9 @@ public class Sample extends Activity {
             mRootLayout.addView(imageView);
 
             mAllImageViews.add(imageView);
+
+
+
             RelativeLayout.LayoutParams animationLayout = (RelativeLayout.LayoutParams) imageView.getLayoutParams();
             animationLayout.setMargins(0, (int)(-200*mScale), 0, 0);
             animationLayout.width = (int) (200*mScale);

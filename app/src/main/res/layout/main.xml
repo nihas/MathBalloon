@@ -14,6 +14,7 @@
         android:layout_height="60dp"
         android:padding="8dp"
         android:src="@drawable/pause"
+        android:background="?selectableItemBackground"
         android:layout_alignParentRight="true"/>
 
 </RelativeLayout>

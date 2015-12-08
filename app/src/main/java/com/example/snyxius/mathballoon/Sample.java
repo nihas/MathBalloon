@@ -3,6 +3,7 @@ package com.example.snyxius.mathballoon;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -15,6 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -44,6 +48,7 @@ public class Sample extends Activity {
             R.drawable.blankballon9,
 
     };
+    ValueAnimator animator;
     private Rect mDisplaySize = new Rect();
      int mInt;
     private RelativeLayout mRootLayout;
@@ -54,6 +59,100 @@ public class Sample extends Activity {
     ImageView resume,level,score,exit;
 
     TextView animtext;
+
+
+    private Handler handler = new Handler();
+    private Runnable runnable = new Runnable() {
+
+        public void run() {
+//            adView.loadAd(new AdRequest());
+            handler.postDelayed(this, 1000);
+            int viewId = new Random().nextInt(LEAVES.length);
+            Drawable d = getResources().getDrawable(LEAVES[viewId]);
+            LayoutInflater inflate = LayoutInflater.from(Sample.this);
+//            ImageView imageView = (ImageView) inflate.inflate(R.layout.ani_image_view, null);
+//            imageView.setImageDrawable(d);
+//            mRootLayout.addView(imageView);
+
+//            mAllImageViews.add(imageView);
+            View child = getLayoutInflater().inflate(R.layout.duplicate, null);
+            relativeLayout = (RelativeLayout)child.findViewById(R.id.relative1);
+            imageView=(ImageView)child.findViewById(R.id.aniImageView);
+            animtext=(TextView)child.findViewById(R.id.numbertext);
+
+            imageView.setImageDrawable(d);
+            animtext.setText(String.valueOf(getRandom(2, 100)));
+            relativeLayout.setTag(animtext.getText().toString());
+
+
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    RelativeLayout tvday=(RelativeLayout)findViewById(v.getId());
+//                    TextView t=(TextView)tvday.findViewById(R.id.numbertext);
+                    int num = Integer.valueOf(v.getTag().toString());
+                    System.out.println("num" + num);
+                    if (num % mInt == 0) {
+                        Toast.makeText(getApplication(), "correct", Toast.LENGTH_LONG).show();
+                        RelativeLayout relativeLayout1 = (RelativeLayout) v;
+                        final ImageView imageView1 = (ImageView) relativeLayout1.findViewById(R.id.aniImageView);
+                        imageView1.setImageResource(R.drawable.blast);
+                        TextView numbertext = (TextView) relativeLayout1.findViewById(R.id.numbertext);
+                        numbertext.setVisibility(View.INVISIBLE);
+
+                        // giving fadeout animation
+                        Animation fadeOut = new AlphaAnimation(1, 0);
+                        fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
+                        fadeOut.setStartOffset(500);
+                        fadeOut.setDuration(500);
+
+
+                        AnimationSet animation = new AnimationSet(false); //change to false
+                        animation.addAnimation(fadeOut);
+                        relativeLayout1.setAnimation(animation);
+                        animation.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                imageView1.setVisibility(View.INVISIBLE);
+
+
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        });
+
+                    } else {
+                        Toast.makeText(getApplication(), "wrong", Toast.LENGTH_LONG).show();
+                    }
+
+
+                }
+            });
+
+//            RelativeLayout relativeLayout=(RelativeLayout)inflate.inflate(R.layout.duplicate,null);
+//            relativeLayout.setBackgroundResource();
+//            relativeLayout.setBackgroundResource(d);
+            mRootLayout.addView(relativeLayout);
+
+
+            RelativeLayout.LayoutParams animationLayout = (RelativeLayout.LayoutParams) relativeLayout.getLayoutParams();
+            animationLayout.setMargins(0, (int)(-200*mScale), 0, 0);
+            animationLayout.width = (int) (200*mScale);
+            animationLayout.height = (int) (200*mScale);
+//animationLayout.setd
+            startAnimation(relativeLayout);
+
+        }
+    };
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,10 +170,15 @@ public class Sample extends Activity {
         Bundle b = getIntent().getExtras();
        mInt= b.getInt("Integer");
         System.out.println("Value" + mInt);
-       /* pausebutton.setOnClickListener(new View.OnClickListener() {
+
+
+        handler.postDelayed(runnable, 1000);
+        pausebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                handler.removeCallbacks(runnable);
+//stopAnimation();
+                relativeLayout.clearAnimation();
                 final Dialog dialog = new Dialog(Sample.this);
                 dialog.setContentView(R.layout.menudialog);
                 resume = (ImageView) dialog.findViewById(R.id.resume);
@@ -86,7 +190,8 @@ public class Sample extends Activity {
                 resume.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+//                       animator.start();
+                        handler.postDelayed(runnable, 1000);
                         dialog.dismiss();
                     }
                 });
@@ -102,9 +207,14 @@ public class Sample extends Activity {
                 });
                 dialog.show();
 
+
             }
-        });*/
-        new Timer().schedule(new ExeTimerTask(), 0, 1000);
+        });
+//        new Timer().schedule(new ExeTimerTask(), 0, 1000);
+    }
+    private void stopAnimation(){
+//        currentTime = mGlobeAnimator.getCurrentPlayTime();
+        animator.cancel();
     }
 
     public void startAnimation(final RelativeLayout aniView) {
@@ -115,10 +225,10 @@ public class Sample extends Activity {
        // long delay = new Random().nextInt(Constants.MAX_DELAY);
 
         //speed for ballon increasing here
-        final ValueAnimator animator = ValueAnimator.ofFloat(1.1f, 0.0f);
+        animator = ValueAnimator.ofFloat(1.1f, 0.0f);
         animator.setDuration(Constants.ANIM_DURATION);
-        animator.setInterpolator(new AccelerateInterpolator());
-        animator.setStartDelay(2000);
+//        animator.setInterpolator(new AccelerateInterpolator());
+        animator.setStartDelay(0);
         final int movex = new Random().nextInt(mDisplaySize.right);
 //
 
@@ -141,16 +251,16 @@ public class Sample extends Activity {
 
     public static int getRandom(int startvalue,int endvalue)
     {
-//        int leftpnt=movex-280;
-//        int rightpnt=movex;
+
         Random r=new Random();
         int values=r.nextInt(endvalue-startvalue)+startvalue;
 return values;
     }
 
-    private Handler mHandler = new Handler() {
+  /*  private Handler mHandler = new Handler() {
+//
         @Override
-        public void handleMessage(Message msg) {
+        public void handleMessage(final Message msg) {
             super.handleMessage(msg);
             int viewId = new Random().nextInt(LEAVES.length);
             Drawable d = getResources().getDrawable(LEAVES[viewId]);
@@ -177,16 +287,80 @@ View child = getLayoutInflater().inflate(R.layout.duplicate, null);
 //                    TextView t=(TextView)tvday.findViewById(R.id.numbertext);
                     int num = Integer.valueOf(v.getTag().toString());
                     System.out.println("num" + num);
-                    if(num%mInt==0) {
-                        Toast.makeText(getApplication(), "correct" , Toast.LENGTH_LONG).show();
+                    if (num % mInt == 0) {
+                        Toast.makeText(getApplication(), "correct", Toast.LENGTH_LONG).show();
+                        RelativeLayout relativeLayout1 = (RelativeLayout) v;
+                        final ImageView imageView1 = (ImageView) relativeLayout1.findViewById(R.id.aniImageView);
+                        imageView1.setImageResource(R.drawable.blast);
+                        TextView numbertext = (TextView) relativeLayout1.findViewById(R.id.numbertext);
+                        numbertext.setVisibility(View.INVISIBLE);
 
+                        // giving fadeout animation
+                        Animation fadeOut = new AlphaAnimation(1, 0);
+                        fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
+                        fadeOut.setStartOffset(500);
+                        fadeOut.setDuration(500);
+
+
+                        AnimationSet animation = new AnimationSet(false); //change to false
+                        animation.addAnimation(fadeOut);
+                        relativeLayout1.setAnimation(animation);
+                        animation.setAnimationListener(new Animation.AnimationListener() {
+                            @Override
+                            public void onAnimationStart(Animation animation) {
+
+                            }
+
+                            @Override
+                            public void onAnimationEnd(Animation animation) {
+                                imageView1.setVisibility(View.INVISIBLE);
+
+
+                            }
+
+                            @Override
+                            public void onAnimationRepeat(Animation animation) {
+
+                            }
+                        });
+
+                    } else {
+                        Toast.makeText(getApplication(), "wrong", Toast.LENGTH_LONG).show();
                     }
-                    else
-                    {
-                        Toast.makeText(getApplication(),"wrong", Toast.LENGTH_LONG).show();
-                    }
 
 
+                }
+            });
+            pausebutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    final Dialog dialog = new Dialog(Sample.this);
+                    dialog.setContentView(R.layout.menudialog);
+                    resume = (ImageView) dialog.findViewById(R.id.resume);
+                    level = (ImageView) dialog.findViewById(R.id.level);
+                    score = (ImageView) dialog.findViewById(R.id.score);
+                    exit = (ImageView) dialog.findViewById(R.id.exit);
+
+
+                    resume.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            dialog.dismiss();
+                        }
+                    });
+                    exit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent startMain = new Intent(Intent.ACTION_MAIN);
+                            startMain.addCategory(Intent.CATEGORY_HOME);
+                            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                            startActivity(startMain);
+                        }
+                    });
+                    dialog.show();
 
                 }
             });
@@ -203,14 +377,23 @@ View child = getLayoutInflater().inflate(R.layout.duplicate, null);
             animationLayout.height = (int) (200*mScale);
 
             startAnimation(relativeLayout);
+
+//
+//            }
         }
     };
+*/
 
+  @Override
+  protected void onDestroy() {
+      handler.removeCallbacks(runnable);
+      super.onDestroy();
+  }
     private class ExeTimerTask extends TimerTask {
         @Override
         public void run() {
             // we don't really use the message 'what' but we have to specify something.
-            mHandler.sendEmptyMessage(Constants.EMPTY_MESSAGE_WHAT);
+            handler.sendEmptyMessage(Constants.EMPTY_MESSAGE_WHAT);
         }
     }
 }

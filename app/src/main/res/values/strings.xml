@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MathBalloon</string>
+    <string name="crash_toast_text" />
 </resources>

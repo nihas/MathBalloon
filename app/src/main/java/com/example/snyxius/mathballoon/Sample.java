@@ -149,8 +149,8 @@ public class Sample extends Activity {
 
             RelativeLayout.LayoutParams animationLayout = (RelativeLayout.LayoutParams) relativeLayout.getLayoutParams();
             animationLayout.setMargins(0, (int)(-200*mScale), 0, 0);
-            animationLayout.width = (int) (200*mScale);
-            animationLayout.height = (int) (200*mScale);
+            animationLayout.width = (int) (150*mScale);
+            animationLayout.height = (int) (150*mScale);
 //animationLayout.setd
             startAnimation(relativeLayout);
 
@@ -248,6 +248,7 @@ animator.addPauseListener(new Animator.AnimatorPauseListener() {
         animator.setDuration(Constants.ANIM_DURATION);
 //        animator.setInterpolator(new AccelerateInterpolator());
         animator.setStartDelay(0);
+
         final int movex = new Random().nextInt(mDisplaySize.right);
 //
 

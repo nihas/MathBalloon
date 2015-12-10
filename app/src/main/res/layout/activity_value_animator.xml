@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:layout_alignParentTop="true">
-    </FrameLayout>
+    </RelativeLayout>
     <LinearLayout
         android:id="@+id/controlBtns"
         android:layout_width="match_parent"

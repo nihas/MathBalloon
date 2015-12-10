@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 public class ValueAnimatorDemo2 extends Activity implements ValueAnimator.AnimatorUpdateListener {
 	private AnimatorProxy mImageAnimatorProxy;
@@ -51,7 +52,7 @@ public class ValueAnimatorDemo2 extends Activity implements ValueAnimator.Animat
 		final ImageView mImageView = (ImageView) this.findViewById(R.id.image);
 		mImageAnimatorProxy = AnimatorProxy.wrap(mImageView);
 		
-		final FrameLayout container = (FrameLayout) this.findViewById(R.id.container);
+		final RelativeLayout container = (RelativeLayout) this.findViewById(R.id.container);
 
 		final Button mBtnStart = (Button) this.findViewById(R.id.btnStart);
 		mBtnStart.setOnClickListener(new View.OnClickListener() {

@@ -18,6 +18,8 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -28,7 +30,7 @@ import java.util.Random;
 
 public class ValueAnimatorDemo extends AppCompatActivity{
 	private AnimatorProxy mImageAnimatorProxy;
-	private ImageView mImageView;
+//	private ImageView mImageView;
 	private float mOriX, mOriY;
 	Display mdisp;
 	Point mdispSize;
@@ -39,43 +41,59 @@ public class ValueAnimatorDemo extends AppCompatActivity{
 	private float mScale;
 	ImageView imageView,pausebutton;
 	TextView animtext;
-	int maxX;
-	int maxY;
+	RelativeLayout container;
+	float maxX;
+	float maxY;
+	View child;
 
 	Runnable runnable=new Runnable() {
 		@Override
 		public void run() {
-//			int viewId = new Random().nextInt(LEAVES.length);
-//			Drawable d = getResources().getDrawable(LEAVES[viewId]);
-//			LayoutInflater inflate = LayoutInflater.from(ValueAnimatorDemo.this);
-//			View child = getLayoutInflater().inflate(R.layout.duplicate, null);
-//			relativeLayout = (RelativeLayout)child.findViewById(R.id.relative1);
-//			imageView=(ImageView)child.findViewById(R.id.aniImageView);
-//			animtext=(TextView)child.findViewById(R.id.numbertext);
-//
-//			imageView.setImageDrawable(d);
-//			animtext.setText(String.valueOf(getRandom(2, 100)));
-//			relativeLayout.setTag(animtext.getText().toString());
-			handler.postDelayed(runnable, 250);
-//			RelativeLayout.LayoutParams animationLayout = (RelativeLayout.LayoutParams) mImageView.getLayoutParams();
+			handler.postDelayed(runnable, 2000);
+			int viewId = new Random().nextInt(LEAVES.length);
+			Drawable d = getResources().getDrawable(LEAVES[viewId]);
+			View child = getLayoutInflater().inflate(R.layout.duplicate, null);
+			mImageAnimatorProxy = AnimatorProxy.wrap(child);
+
+			relativeLayout = (RelativeLayout)child.findViewById(R.id.relative1);
+			imageView=(ImageView)child.findViewById(R.id.aniImageView);
+			animtext=(TextView)child.findViewById(R.id.numbertext);
+			LayoutInflater inflate = LayoutInflater.from(ValueAnimatorDemo.this);
+			imageView.setImageDrawable(d);
+			animtext.setText(String.valueOf(getRandomBaloonNumbers(2, 100)));
+			relativeLayout.setTag(animtext.getText().toString());
+
+//			RelativeLayout.LayoutParams animationLayout = (RelativeLayout.LayoutParams) relativeLayout.getLayoutParams();
 //			animationLayout.setMargins(0, 0, 0, 0);
 //			animationLayout.width = (int) (150*mScale);
 //			animationLayout.height = (int) (150*mScale);
 //animationLayout.setd
-			PropertyValuesHolder widthPropertyHolder = PropertyValuesHolder.ofFloat("posX", getRandom(0,maxX), getRandom(0,maxX));
-			PropertyValuesHolder heightPropertyHolder = PropertyValuesHolder.ofFloat("posY", maxY, 0);
-			ValueAnimator mTranslationAnimator = ValueAnimator.ofPropertyValuesHolder(widthPropertyHolder, heightPropertyHolder);
-			mTranslationAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-				@Override
-				public void onAnimationUpdate(ValueAnimator animation) {
-					float posX = (Float) animation.getAnimatedValue("posX");
-					float posY = (Float) animation.getAnimatedValue("posY");
-					mImageAnimatorProxy.setX(posX);
-					mImageAnimatorProxy.setY(posY);
-				}
-			});
-			mTranslationAnimator.setDuration(5000);
-			mTranslationAnimator.start();
+			Animation slide = null;
+			Random rand=new Random();
+			slide = new TranslateAnimation(getRandom(0, maxX-relativeLayout.getWidth()),getRandom(0, maxX-relativeLayout.getWidth())-relativeLayout.getWidth(),maxY,-3);
+
+			slide.setDuration(5000);
+			slide.setFillAfter(true);
+			slide.setFillEnabled(true);
+			relativeLayout.startAnimation(slide);
+
+//			PropertyValuesHolder widthPropertyHolder = PropertyValuesHolder.ofFloat("posX", getRandom(0,maxX), getRandom(0,maxX));
+//			PropertyValuesHolder heightPropertyHolder = PropertyValuesHolder.ofFloat("posY", maxY, 0);
+//			ValueAnimator mTranslationAnimator = ValueAnimator.ofPropertyValuesHolder(widthPropertyHolder, heightPropertyHolder);
+//			mTranslationAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//
+//				@Override
+//				public void onAnimationUpdate(ValueAnimator animation) {
+//					float posX = (Float) animation.getAnimatedValue("posX");
+//					float posY = (Float) animation.getAnimatedValue("posY");
+//					mImageAnimatorProxy.setX(posX);
+//					mImageAnimatorProxy.setY(posY);
+//				}
+//			});
+//			mTranslationAnimator.setDuration(5000);
+//			mTranslationAnimator.start();
+
+			container.addView(relativeLayout);
 		}
 	};
 
@@ -96,9 +114,14 @@ public class ValueAnimatorDemo extends AppCompatActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_value_animator);
-		
-		mImageView = (ImageView) this.findViewById(R.id.image);
-		mImageAnimatorProxy = AnimatorProxy.wrap(mImageView);
+
+
+
+
+
+
+//		mImageView = (ImageView) this.findViewById(R.id.image);
+//		mImageAnimatorProxy = AnimatorProxy.wrap(child);
 
 		mdisp = getWindowManager().getDefaultDisplay();
 		mdisp.getRectSize(mDisplaySize);
@@ -112,17 +135,17 @@ public class ValueAnimatorDemo extends AppCompatActivity{
 		maxY = mdispSize.y;
 
 
-		mOriX = mImageAnimatorProxy.getX();
-		mOriY = mImageAnimatorProxy.getY();
+//		mOriX = mImageAnimatorProxy.getX();
+//		mOriY = mImageAnimatorProxy.getY();
 
-		final FrameLayout container = (FrameLayout) this.findViewById(R.id.container);
+		container = (RelativeLayout) this.findViewById(R.id.container);
 		
 		final Button mBtnStart = (Button) this.findViewById(R.id.btnStart);
 		mBtnStart.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				mBtnStart.setEnabled(false);
-//				handler.post(runnable);
+				handler.post(runnable);
 
 
 			}
@@ -134,6 +157,7 @@ public class ValueAnimatorDemo extends AppCompatActivity{
 				mBtnStart.setEnabled(true);
 				mImageAnimatorProxy.setX(mOriX);
 				mImageAnimatorProxy.setY(mOriY);
+				handler.removeCallbacks(runnable);
 			}
 		});
 	}
@@ -148,14 +172,37 @@ public class ValueAnimatorDemo extends AppCompatActivity{
 //		mImageAnimatorProxy.setY(posY);
 //	}
 
-	public static int getRandom(int startvalue,int endvalue)
+	public static float getRandom(float startvalue,float endvalue)
+	{
+
+		Random r=new Random();
+		float values=(endvalue-startvalue)*r.nextFloat()+startvalue;
+		return values;
+	}
+
+
+	public static int getRandomBaloonNumbers(int startvalue,int endvalue)
 	{
 
 		Random r=new Random();
 		int values=r.nextInt(endvalue-startvalue)+startvalue;
 		return values;
 	}
+	private float getScreenHeight() {
 
+		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+		return (float) displaymetrics.heightPixels;
+
+	}
+
+	private float getScreenWidth() {
+
+		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+		return (float) displaymetrics.widthPixels;
+
+	}
 	public void startAnimation(final ImageView aniView) {
 
 //		aniView.setPivotX(aniView.getWidth() / 2);

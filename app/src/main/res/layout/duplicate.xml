@@ -3,28 +3,29 @@
     android:id="@+id/relative1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/aniImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="150dp"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/blankballon1"
-         />
+        android:src="@drawable/blankballon1" />
     <TextView
         android:id="@+id/numbertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1"
         android:textStyle="bold"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-       android:layout_marginLeft="75dp"
-        android:layout_marginTop="50dp"
-        android:textColor="#ffffff"
-         />
-
+        android:textColor="#ffffff" />
+    </RelativeLayout>
 </RelativeLayout>
 
 

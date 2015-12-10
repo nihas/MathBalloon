@@ -70,13 +70,31 @@ public class ValueAnimatorDemo extends AppCompatActivity{
 //animationLayout.setd
 			Animation slide = null;
 			Random rand=new Random();
-			slide = new TranslateAnimation(getRandom(0, maxX-relativeLayout.getWidth()),getRandom(0, maxX-relativeLayout.getWidth())-relativeLayout.getWidth(),maxY,-3);
+			slide = new TranslateAnimation(getRandom(-5,maxX-relativeLayout.getWidth())-relativeLayout.getWidth(),
+					getRandom(-3, maxX-8.0f),
+					maxY,
+					-8.0f);
 
 			slide.setDuration(5000);
 			slide.setFillAfter(true);
 			slide.setFillEnabled(true);
 			relativeLayout.startAnimation(slide);
+			slide.setAnimationListener(new Animation.AnimationListener() {
+				@Override
+				public void onAnimationStart(Animation animation) {
 
+				}
+
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					relativeLayout.setVisibility(View.GONE);
+				}
+
+				@Override
+				public void onAnimationRepeat(Animation animation) {
+
+				}
+			});
 //			PropertyValuesHolder widthPropertyHolder = PropertyValuesHolder.ofFloat("posX", getRandom(0,maxX), getRandom(0,maxX));
 //			PropertyValuesHolder heightPropertyHolder = PropertyValuesHolder.ofFloat("posY", maxY, 0);
 //			ValueAnimator mTranslationAnimator = ValueAnimator.ofPropertyValuesHolder(widthPropertyHolder, heightPropertyHolder);
